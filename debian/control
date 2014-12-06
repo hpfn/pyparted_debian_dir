@@ -14,8 +14,8 @@ Standards-Version: 3.9.6
 X-Python-Version: >= 2.6
 X-Python3-Version: >= 3.0
 Homepage: https://github.com/dcantrell/pyparted
-Vcs-Git: git://anonscm.debian.org/parted/debian/pyparted.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=parted/debian/pyparted.git
+Vcs-Git: https://github.com/hpfn/pyparted_debian_dir -b debian
+Vcs-Browser: https://github.com/hpfn/pyparted_debian_dir
 
 Package: python-parted
 Architecture: any
