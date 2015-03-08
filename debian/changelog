@@ -1,4 +1,11 @@
-pyparted (3.10.2-1) unstable; urgency=medium
+pyparted (3.10.3-1) experimental; urgency=medium
+
+  * New upstream release
+  * Updated debian/copyright.
+
+ -- Herbert Parentes Fortes Neto <hpfn@ig.com.br>  Sat, 28 Feb 2015 14:39:56 -0300
+
+pyparted (3.10.2-1) experimental; urgency=medium
 
   * New upstream release
   * New maintainer. Thanks to Luca Falavigna, the initial maintainer, for
@@ -12,22 +19,24 @@ pyparted (3.10.2-1) unstable; urgency=medium
            Source field
            on Files: * Copyright field. 
                        update to 2007-2014 Red Hat Inc
-           on Files: debian/* Copyright field
+           on Files: debian/* Copyright field.
                        added  Intrigeri <intrigeri@debian.org>
            using GPL2 license as is in
                        /usr/share/debhelper/dh_make/licenses/gpl2
   * update debian/control:
-           Maintainer and Homepage fields. remove Uploaders
-           Build-Depends field. added dh-python
-           python3-parted-dbg: fix Depends field. now ${python3:Depends} 
+           Maintainer and Homepage fields. 
+           Uploaders removed.
+           Vcs-Git and Vcs-Browser fields.
+           Build-Depends field. added dh-python.
+           python3-parted-dbg: fix Depends field. now ${python3:Depends}.
   * update debian/rules file. 
-           added DEB_LDFLAGS_MAINT_APPEND to stop 'blhc --all' messages
-           remove empty directory usr/lib/python*/dist-packages/parted/
+           added DEB_LDFLAGS_MAINT_APPEND to stop 'blhc --all' messages.
+           remove empty directory usr/lib/python*/dist-packages/parted/.
   * update debian/patches/no-last-flag-check.patch because the file 
-    src/pydisk.c was changed
+    src/pydisk.c was changed.
   * debian/patches/Fix-localeC-imports.patch removed.
-    the upstreamfixed the source code in version 3.10.1
-  * update debian/watch file
+    the upstreamfixed the source code in version 3.10.1.
+  * update debian/watch file.
 
  -- Herbert Parentes Fortes Neto <hpfn@ig.com.br>  Sun, 30 Nov 2014 15:19:28 -0200
 
