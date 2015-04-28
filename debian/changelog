@@ -1,3 +1,9 @@
+pyparted (3.10.3-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Herbert Parentes Fortes Neto <hpfn@ig.com.br>  Tue, 28 Apr 2015 11:46:47 -0300
+
 pyparted (3.10.3-1) experimental; urgency=medium
 
   * New upstream release
