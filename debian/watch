@@ -1,2 +1,2 @@
 version=3
-https://github.com/dcantrell/pyparted/releases .*/archive/pyparted-(\d\S+)\.(?:zip|tar\.gz)
+https://github.com/dcantrell/pyparted/releases .*/archive/(?:pyparted-|v)(\d\S+)\.(?:zip|tar\.gz)

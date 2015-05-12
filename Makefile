@@ -1,6 +1,6 @@
 #
 # Makefile for pyparted
-# Copyright (C) 2007-2011  Red Hat, Inc.
+# Copyright (C) 2007-2015  Red Hat, Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,9 +26,7 @@ DESTDIR      ?= /
 PACKAGE       = $(shell $(PYTHON) setup.py --name)
 VERSION       = $(shell $(PYTHON) setup.py --version)
 
-TAG           = $(PACKAGE)-$(VERSION)
-
-PYLINTOPTS    = src/parted/*py --msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}' --rcfile=/dev/null -r n --disable=C,R --disable=W0141,W0212,W0511,W0613,W0702,E1103
+TAG           = v$(VERSION)
 
 default: all
 
@@ -39,14 +37,12 @@ test: all
 	@env PYTHONPATH=$$(find $$(pwd) -name "*.so" | head -n 1 | xargs dirname):src/parted:src \
 	$(PYTHON) -m unittest discover -v
 
-check: all
-	env PYTHONPATH=$$(find $$(pwd) -name "*.so" | head -n 1 | xargs dirname):src/parted:src \
-	pylint $(PYLINTOPTS) src/parted/*.py
+check: clean
+	env PYTHON=python3 $(MAKE) ; \
+	env PYTHON=python3 PYTHONPATH=$$(find $$(pwd) -name "*.so" | head -n 1 | xargs dirname):src/parted:src \
+	tests/pylint/runpylint.py
 
-ChangeLog:
-	git log > ChangeLog
-
-dist: ChangeLog
+dist:
 	@$(PYTHON) setup.py sdist
 
 tag: dist
@@ -61,14 +57,10 @@ tag: dist
 release: tag
 	( cd dist ; gzip -dc $(PACKAGE)-$(VERSION).tar.gz | tar -xvf - )
 	( cd dist/$(PACKAGE)-$(VERSION) && $(PYTHON) setup.py build ) || exit 1
+	rm -rf dist MANIFEST
 	@echo
-	@echo "$(PACKAGE)-$(VERSION).tar.gz is now ready to upload."
-	@echo "Do not forget to push changes to the repository with:"
-	@echo "    git push"
-	@echo "    git push --tags"
-	@echo
-	@echo "Do not forget to add a new Version entry on the Trac site:"
-	@echo "    https://fedorahosted.org/pyparted/admin/ticket/versions"
+	@echo "$(PACKAGE)-$(VERSION) can be pushed to the git repo:"
+	@echo "    git push && git push --tags"
 	@echo
 
 rpmlog:
@@ -98,5 +90,4 @@ install: all
 	@$(PYTHON) setup.py install --root $(DESTDIR) -c -O1
 
 clean:
-	@$(PYTHON) setup.py clean
-	@[ -d .git ] && git clean -d -x -f
+	-rm -r build

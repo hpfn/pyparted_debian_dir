@@ -1,3 +1,13 @@
+pyparted (3.10.5-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/copyright: updated.
+  * debian/*.docs: NEWS removed. Too old info.
+  * debian/*.examples: created.
+  * debian/watch: updated.
+
+ -- Herbert Parentes Fortes Neto <hpfn@ig.com.br>  Tue, 12 May 2015 10:46:45 -0300
+
 pyparted (3.10.3-2) unstable; urgency=medium
 
   * Upload to unstable.
