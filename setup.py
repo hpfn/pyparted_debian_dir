@@ -17,6 +17,8 @@
 #
 # Author(s): David Cantrell <dcantrell@redhat.com>
 #            Alex Skinner <alex@lx.lc>
+#
+# pylint: skip-file
 
 import subprocess
 import glob
@@ -29,7 +31,7 @@ from distutils.errors import LinkError
 from distutils.core import setup
 from distutils.core import Extension
 
-pyparted_version = '3.10.3'
+pyparted_version = '3.10.5'
 python_version = sys.version_info
 
 need_libparted_version = '2.3'
