@@ -1,3 +1,16 @@
+pyparted (3.10.7-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/python-parted.docs:
+      - the BUGS file was removed by the upstream.
+  * debian/python3-parted.docs:
+      - the BUGS file was removed by the upstream.
+  * debian/example/*:
+      - examples for python-parted.(entry added in python-parted.examples)
+        Thanks Michael Ablassmeier. (Closes: #692503)
+
+ -- Herbert Parentes Fortes Neto <hpfn@ig.com.br>  Sat, 05 Sep 2015 18:37:24 -0300
+
 pyparted (3.10.5-1) unstable; urgency=medium
 
   * New upstream release.

@@ -1,1 +1,3 @@
 examples/make_one_primary_partition.py
+debian/example/list_devices.py
+debian/example/list_partitions.py
