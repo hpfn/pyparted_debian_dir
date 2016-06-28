@@ -1,0 +1,16 @@
+Description: Fixes a typo.
+Author: Herbert Parentes Fortes Neto <hpfn@debian.org>
+Last-Update: 2016-06-28
+Index: pyparted-3.10.7/include/docstrings/pydisk.h
+===================================================================
+--- pyparted-3.10.7.orig/include/docstrings/pydisk.h
++++ pyparted-3.10.7/include/docstrings/pydisk.h
+@@ -136,7 +136,7 @@ PyDoc_STRVAR(disk_get_last_partition_num
+ 
+ PyDoc_STRVAR(disk_get_max_primary_partition_count_doc,
+ "get_max_primary_partition_count(self) -> integer\n\n"
+-"Get the maximum number of primary partitions spported by the disk label.");
++"Get the maximum number of primary partitions supported by the disk label.");
+ 
+ PyDoc_STRVAR(disk_get_max_supported_partition_count_doc,
+ "get_max_supported_partition_count(self) -> integer\n\n"

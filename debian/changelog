@@ -1,3 +1,16 @@
+pyparted (3.10.7-3) unstable; urgency=medium
+  
+  * debian/control:
+      - using debian.org mail address.
+      - Standards-Version from 3.9.6 to 3.9.8.
+      - creation of dbg packages stopped. Debhelper take care of that.
+  * debian/copyright updated.
+  * debian/patches:
+      - repro-build.patch added. Thanks Reiner Herrmann. (Closes: #828788)
+      - typo-pydisck-h.patch added. Fixes a typo. 
+
+ -- Herbert Parentes Fortes Neto <hpfn@debian.org>  Tue, 28 Jun 2016 11:05:48 -0300
+
 pyparted (3.10.7-2) unstable; urgency=low
     
   * debian/control:

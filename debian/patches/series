@@ -1,1 +1,3 @@
+typo-pydisck-h.patch
+repro-build.patch
 no-last-flag-check.patch
