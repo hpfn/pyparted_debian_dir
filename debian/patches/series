@@ -1,3 +1,4 @@
+typo_mimimum.patch
+typo_iff.patch
 typo-pydisck-h.patch
-repro-build.patch
 no-last-flag-check.patch

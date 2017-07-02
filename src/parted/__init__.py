@@ -25,6 +25,7 @@
 
 from __future__ import division
 
+import math
 import platform
 import re
 import sys
@@ -129,6 +130,9 @@ if hasattr(_ped, 'PARTITION_IRST'):
 if hasattr(_ped, 'PARTITION_ESP'):
     # pylint: disable=E0611
     from _ped import PARTITION_ESP
+if hasattr(_ped, 'PARTITION_NONFS'):
+    # pylint: disable=E0611
+    from _ped import PARTITION_NONFS
 
 from _ped import DISK_CYLINDER_ALIGNMENT
 from _ped import DISK_GPT_PMBR_BOOT
@@ -307,7 +311,7 @@ def sizeToSectors(bytes_, unit, sector_size):
     if unit not in __exponents.keys():
         raise SyntaxError("{:} is not a valid SI or IEC byte unit".format(unit))
     else:
-        return bytes_ * __exponents[unit] // sector_size
+        return math.ceil(bytes_ * __exponents[unit] / sector_size)
 
 # Valid disk labels per architecture type.  The list of label
 # names map to keys in the parted.diskType hash table.

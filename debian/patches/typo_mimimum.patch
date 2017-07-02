@@ -1,0 +1,16 @@
+Description: Fix typo mimimum -> minimum.
+Author: Herbert Parentes Fortes Neto <hpfn@debian.org>
+Last-Update: 2017-07-02
+Index: pyparted-11.1/include/typeobjects/pyconstraint.h
+===================================================================
+--- pyparted-11.1.orig/include/typeobjects/pyconstraint.h
++++ pyparted-11.1/include/typeobjects/pyconstraint.h
+@@ -59,7 +59,7 @@ static PyMethodDef _ped_Constraint_metho
+ static PyGetSetDef _ped_Constraint_getset[] = {
+     {"min_size", (getter) _ped_Constraint_get,
+                  (setter) _ped_Constraint_set,
+-                 "The mimimum size in _ped.Sectors of the partition.", "min_size"},
++                 "The minimum size in _ped.Sectors of the partition.", "min_size"},
+     {"max_size", (getter) _ped_Constraint_get,
+                  (setter) _ped_Constraint_set,
+                  "The maximum size in _ped.Sectors of the partition.", "max_size"},

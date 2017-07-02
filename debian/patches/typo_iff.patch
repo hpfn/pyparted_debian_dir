@@ -1,0 +1,16 @@
+Description: Fix typo 'iff' -> 'if'
+Author: Herbert Parentes Fortes Neto <hpfn@debian.org>
+Last-Update: 2017-07-02
+Index: pyparted-11.1/include/docstrings/pynatmath.h
+===================================================================
+--- pyparted-11.1.orig/include/docstrings/pynatmath.h
++++ pyparted-11.1/include/docstrings/pynatmath.h
+@@ -35,7 +35,7 @@ PyDoc_STRVAR(alignment_duplicate_doc,
+ PyDoc_STRVAR(alignment_intersect_doc,
+ "intersect(self, Alignment) -> _ped.Alignment\n\n"
+ "Create a new Alignment that describes the intersection of self and\n"
+-"Alignment.  A sector will satisfy the new Alignment iff it satisfies both\n"
++"Alignment.  A sector will satisfy the new Alignment if it satisfies both\n"
+ "of the original alignments, where 'satisfy' is determined by is_aligned().\n"
+ "The proof of this is relatively complicated and is described thoroughly\n"
+ "in the libparted source.  This method raises ArithmeticError if no\n"

@@ -928,7 +928,7 @@ PyObject *py_ped_disk_max_partition_length(PyObject *s, PyObject *args) {
     if (!disk)
         return NULL;
 
-    return PyLong_FromUnsignedLong(ped_disk_max_partition_length(disk));
+    return PyLong_FromUnsignedLongLong(ped_disk_max_partition_length(disk));
 }
 
 PyObject *py_ped_disk_max_partition_start_sector(PyObject *s, PyObject *args) {
@@ -938,7 +938,7 @@ PyObject *py_ped_disk_max_partition_start_sector(PyObject *s, PyObject *args) {
     if (!disk)
         return NULL;
 
-    return PyLong_FromUnsignedLong(ped_disk_max_partition_start_sector(disk));
+    return PyLong_FromUnsignedLongLong(ped_disk_max_partition_start_sector(disk));
 }
 
 PyObject *py_ped_disk_set_flag(PyObject *s, PyObject *args) {
@@ -1217,9 +1217,11 @@ PyObject *py_ped_partition_set_system(_ped_Partition *s, PyObject *args) {
         return NULL;
     }
 
-    out_fstype = _ped_FileSystemType2PedFileSystemType(in_fstype);
-    if (out_fstype == NULL) {
-        return NULL;
+    if (in_fstype != NULL) {
+        out_fstype = _ped_FileSystemType2PedFileSystemType(in_fstype);
+        if (out_fstype == NULL) {
+            return NULL;
+        }
     }
 
     /* ped_partition_set_system will assert on this. */

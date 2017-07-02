@@ -4,7 +4,7 @@ Upstream-Contact: David Cantrell <dcantrell@redhat.com>
 Source: https://github.com/dcantrell/pyparted
 
 Files: *
-Copyright: 2007-2015 Red Hat, Inc.
+Copyright: 2007-2017 Red Hat, Inc.
 License: GPL-2+
 
 Files: examples/make_one_primary_partition.py
@@ -14,7 +14,7 @@ License: GPL-3+
 Files: debian/*
 Copyright: 2009-2014 Luca Falavigna <dktrkranz@debian.org>
            2014      Intrigeri <intrigeri@debian.org>
-           2014-2016 Herbert Parentes Fortes Neto <hpfn@debian.org>
+           2014-2017 Herbert Parentes Fortes Neto <hpfn@debian.org>
 License: GPL-2+
 
 License: GPL-2+

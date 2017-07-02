@@ -1,3 +1,24 @@
+pyparted (3.11.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+      - Bump STD-Version from 3.9.8 to 4.0.0.
+  * debian/copyright:
+      - Update.
+  * debian/paches:
+      - Remove repro-build.patch. Applied byt the upstream.
+      - Add typo_iff.patch.
+      - Add typo_mimimum.patch.
+  * debian/rules:
+      - Add DEB_BUILD_MAINT_OPTIONS = hardening=+all
+      - Change DEB_LDFLAGS_MAINT_APPEND:
+          - -'-Wl,-z,now'
+          - +'-Wl,--as-needed'
+      - Add 'override_dh_clean':
+          - rm *-dbg directories.
+
+ -- Herbert Parentes Fortes Neto <hpfn@debian.org>  Sun, 02 Jul 2017 09:18:54 -0300
+
 pyparted (3.10.7-3) unstable; urgency=medium
   
   * debian/control:
