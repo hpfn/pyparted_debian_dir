@@ -44,6 +44,7 @@ class BytesToSectorsTestCase(unittest.TestCase):
         self.assertRaises(SyntaxError, parted.sizeToSectors, 9, "yb", 1)
         self.assertEqual(int(parted.sizeToSectors(7777.0, "B", 512)),
                              parted.sizeToSectors(7777.0, "B", 512))
+        self.assertEqual(parted.sizeToSectors(1000, "B", 512), 2)
 
 class GetLabelsTestCase(unittest.TestCase):
     def runTest(self):
@@ -141,23 +142,3 @@ class VersionTestCase(unittest.TestCase):
         ver = parted.version()
         self.assertEqual(ver['libparted'], _ped.libparted_version())
         self.assertEqual(ver['pyparted'], _ped.pyparted_version())
-
-# And then a suite to hold all the test cases for this module.
-def makeSuite():
-    suite = unittest.TestSuite()
-    suite.addTest(FormatBytesTestCase())
-    suite.addTest(BytesToSectorsTestCase())
-    suite.addTest(GetLabelsTestCase())
-    suite.addTest(GetDeviceTestCase())
-    suite.addTest(GetAllDevicesTestCase())
-    suite.addTest(ProbeForSpecificFileSystemTestCase())
-    suite.addTest(ProbeFileSystemTestCase())
-    suite.addTest(FreshDiskTestCase())
-    suite.addTest(IsAlignToCylindersTestCase())
-    suite.addTest(ToggleAlignToCylindersTestCase())
-    suite.addTest(VersionTestCase())
-    return suite
-
-s = makeSuite()
-if __name__ == "__main__":
-    unittest.main(defaultTest='s', verbosity=2)

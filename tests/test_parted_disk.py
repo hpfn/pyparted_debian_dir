@@ -88,11 +88,19 @@ class DiskSupportsFeatureTestCase(unittest.TestCase):
         # TODO
         self.fail("Unimplemented test case.")
 
-@unittest.skip("Unimplemented test case.")
-class DiskAddPartitionTestCase(unittest.TestCase):
+class DiskAddPartitionTestCase(RequiresDisk):
+    """
+        addPartition should return True if partition is added successfully(even
+        without committing)
+    """
     def runTest(self):
-        # TODO
-        self.fail("Unimplemented test case.")
+        self.disk.setFlag(parted.DISK_CYLINDER_ALIGNMENT)
+
+        length = 100
+        geom = parted.Geometry(self.device, start=100, length=length)
+        part = parted.Partition(self.disk, parted.PARTITION_NORMAL, geometry=geom)
+        constraint = parted.Constraint(exactGeom=geom)
+        self.assertTrue(self.disk.addPartition(part, constraint))
 
 @unittest.skip("Unimplemented test case.")
 class DiskRemovePartitionTestCase(unittest.TestCase):
@@ -142,17 +150,17 @@ class DiskGetPartitionBySectorTestCase(unittest.TestCase):
         # TODO
         self.fail("Unimplemented test case.")
 
-@unittest.skip("Unimplemented test case.")
-class DiskGetMaxLogicalPartitionsTestCase(unittest.TestCase):
+class DiskGetMaxSupportedPartitionCountTestCase(RequiresDisk):
+    """
+        maxSupportedPartitionCount should return value 64, based on default
+        value MAX_NUM_PARTS(parted/libparted/arch/linux.c) applied if it cannot
+        find value in /sys/block/DEV/ext_range (RequiresDisk implies there is
+        no ext_range value). Also see testcase
+        DiskGetMaxSupportedPartitionCountTestCase in tests/test__ped_disk ,
+        which tests value returned by source C function defined in module _ped
+    """
     def runTest(self):
-        # TODO
-        self.fail("Unimplemented test case.")
-
-@unittest.skip("Unimplemented test case.")
-class DiskGetMaxSupportedPartitionCountTestCase(unittest.TestCase):
-    def runTest(self):
-        # TODO
-        self.fail("Unimplemented test case.")
+        self.assertEqual(self.disk.maxSupportedPartitionCount, 64)
 
 class DiskMaxPartitionLengthTestCase(RequiresDisk):
     def runTest(self):
@@ -254,50 +262,3 @@ class DiskStrTestCase(unittest.TestCase):
     def runTest(self):
         # TODO
         self.fail("Unimplemented test case.")
-
-# And then a suite to hold all the test cases for this module.
-def makeSuite():
-    suite = unittest.TestSuite()
-    suite.addTest(DiskNewTestCase())
-    suite.addTest(DiskGetSetTestCase())
-    suite.addTest(DiskClobberTestCase())
-    suite.addTest(DiskDuplicateTestCase())
-    suite.addTest(DiskDestroyTestCase())
-    suite.addTest(DiskCommitTestCase())
-    suite.addTest(DiskCommitToDeviceTestCase())
-    suite.addTest(DiskCommitToOSTestCase())
-    suite.addTest(DiskCheckTestCase())
-    suite.addTest(DiskSupportsFeatureTestCase())
-    suite.addTest(DiskAddPartitionTestCase())
-    suite.addTest(DiskRemovePartitionTestCase())
-    suite.addTest(DiskDeletePartitionTestCase())
-    suite.addTest(DiskDeleteAllPartitionsTestCase())
-    suite.addTest(DiskSetPartitionGeometryTestCase())
-    suite.addTest(DiskMaximizePartitionTestCase())
-    suite.addTest(DiskCalculateMaxPartitionGeometryTestCase())
-    suite.addTest(DiskMinimizeExtendedPartitionTestCase())
-    suite.addTest(DiskGetPartitionBySectorTestCase())
-    suite.addTest(DiskGetMaxLogicalPartitionsTestCase())
-    suite.addTest(DiskGetMaxSupportedPartitionCountTestCase())
-    suite.addTest(DiskMaxPartitionLengthTestCase())
-    suite.addTest(DiskMaxPartitionStartSectorTestCase())
-    suite.addTest(DiskGetFlagTestCase())
-    suite.addTest(DiskSetFlagTestCase())
-    suite.addTest(DiskUnsetFlagTestCase())
-    suite.addTest(DiskIsFlagAvailableTestCase())
-    suite.addTest(DiskGetExtendedPartitionTestCase())
-    suite.addTest(DiskGetLogicalPartitionsTestCase())
-    suite.addTest(DiskGetPrimaryPartitionsTestCase())
-    suite.addTest(DiskGetRaidPartitionsTestCase())
-    suite.addTest(DiskGetLVMPartitionsTestCase())
-    suite.addTest(DiskGetFreeSpaceRegionsTestCase())
-    suite.addTest(DiskGetFreeSpacePartitionsTestCase())
-    suite.addTest(DiskGetFirstPartitionTestCase())
-    suite.addTest(DiskGetPartitionByPathTestCase())
-    suite.addTest(DiskGetPedDiskTestCase())
-    suite.addTest(DiskStrTestCase())
-    return suite
-
-s = makeSuite()
-if __name__ == "__main__":
-    unittest.main(defaultTest='s', verbosity=2)

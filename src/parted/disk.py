@@ -56,15 +56,15 @@ class Disk(object):
         self._partitions = CachedList(lambda : self.__getPartitions())
 
     def _hasSameParts(self, other):
-        import itertools
+        import six
 
         if len(self.partitions) != len(other.partitions):
             return False
 
-        partIter = itertools.izip(self.partitions, other.partitions)
+        partIter = six.moves.zip(self.partitions, other.partitions)
         while True:
             try:
-                (left, right) = partIter.next()
+                (left, right) = next(partIter)
                 if left != right:
                     return False
             except StopIteration:
@@ -350,38 +350,6 @@ class Disk(object):
            lies within a logical partition, then the logical partition is
            returned (not the extended partition)."""
         return parted.Partition(disk=self, PedPartition=self.__disk.get_partition_by_sector(sector))
-
-    def getMaxLogicalPartitions(self):
-        """Return the maximum number of logical partitions this Disk
-           will hold.  Returns 0 if there is no extended partition on
-           the disk, returns 11 when all else fails."""
-        if not self.supportsFeature(parted.DISK_TYPE_EXTENDED):
-            return 0
-
-        # maximum number of logical partitions per device type
-        maxLogicalPartitionCount = {
-            "hd": 59,
-            "sd": 11,
-            "ataraid/": 11,
-            "rd/": 3,
-            "cciss/": 11,
-            "i2o/": 11,
-            "iseries/vd": 3,
-            "ida/": 11,
-            "sx8/": 11,
-            "xvd": 11,
-            "vd": 11,
-            "mmcblk": 5
-        }
-
-        dev = self.device.path[5:]
-        for key in maxLogicalPartitionCount.keys():
-            if dev.startswith(key):
-                return maxLogicalPartitionCount[key]
-
-        # XXX: if we don't know about it, should we pretend it can't have
-        # logicals?  probably safer to just use something reasonable
-        return 11
 
     @localeC
     def getExtendedPartition(self):
